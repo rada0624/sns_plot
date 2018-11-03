@@ -1,0 +1,2 @@
+class StudiesHistory < ApplicationRecord
+end
