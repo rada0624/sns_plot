@@ -1,0 +1,43 @@
+<h2>Hey、<%= @users.user_name %></h2>
+
+<hr />
+<h2>今日の実績</h2>
+<%= form_for @histories, :url => { :controller => :mypage, :action => :create } do |f| %>
+  <div class="field">
+    <%= f.label :"カラーコード" %><br />
+    <%= f.text_field :color_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"大カテゴリ" %><br />
+    <%= f.text_field :category1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"小カテゴリ" %><br />
+    <%= f.text_field :category2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"本文" %><br />
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"公開状況" %><br />
+    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]]) %>
+  </div>
+<br />
+<%= f.submit "追加" %>
+<% end %>
+<hr />
+<h2>みんなの実績</h2>
+
+<% @everyone_hisories.each do |ev| %>
+  <div style="border: 1px;">
+  <%= ev.category1 %>（<%= ev.category2 %>）@ID：<%= ev.users_id %><br />
+  <%= ev.content %>
+  </div>
+<br />
+
+<% end %>

@@ -1,2 +1,2 @@
-class StudiesHistory < ApplicationRecord
+class Studies_history < ApplicationRecord
 end
