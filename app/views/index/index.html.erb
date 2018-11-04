@@ -1,0 +1,27 @@
+<style type="text/css">
+body {
+background-image: url("/assets/top_image_1.jpg");
+background-size: cover;
+color: #FFFFFF;
+}
+h2 {
+  font-size: 250%;
+}
+
+p {
+  font-size: 150%;
+}
+</style>
+
+<center>
+<h2>今日頑張ったことを共有しよう。</h2>
+<p>さっそく書いてみよう。</p>
+
+<br />
+
+<% if user_signed_in? %>
+<a href="<%= mypage_path %>" class="btn-icon">マイページ</a>
+<% else %>
+<a href="<%= new_user_registration_path %>" class="btn-icon">新規登録</a>  <a href="<%= new_user_session_path %>" class="btn-icon">ログイン</a>
+<% end %>
+</center>

@@ -1,3 +1,25 @@
 // Place all the styles related to the mypage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.update_form {
+  margin: 10px;
+  padding: 0px 10px 0px 10px;
+  width: 500px;
+  background-color: #FFFFFF;
+}
+
+.box {
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  border:#000000 solid 0px 2px 0px 2px;
+  width: 500px;
+  height: 400px;
+  background-color: #FFFFFF;
+  overflow: scroll;
+}
+
+.after{
+ clear:both;
+}

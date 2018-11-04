@@ -13,3 +13,73 @@
  *= require_tree .
  *= require_self
  */
+
+
+ body{
+ 	margin: 20px;					/* bodyの外側の余白を指定する */
+ 	padding: 50px 10px 50px 10px;	/* bodyの内側余白を指定する(上:右:下:左) */
+  font-family: '游ゴシック';
+  background-color: #f5f5f5;
+ }
+ .Header {
+ 	position: fixed;	/* ヘッダーを固定する */
+ 	top: 0;				/* 上部から配置の基準位置を決める */
+ 	left: 0;			/* 左から配置の基準位置を決める */
+ 	width: 100%;		/* ヘッダーの横幅を指定する */
+ 	height: 70px;		/* ヘッダーの高さを指定する */
+ 	padding: 0px;		/* ヘッダーの余白を指定する(上下左右) */
+ 	background-color: #660000;	/* ヘッダーの背景色を指定する */
+ 	color: #FFFFFF;		/* フォントの色を指定する */
+ }
+ .Header a:link { color: #FFFFFF; text-decoration: none; }
+ .Header a:visited { color: #FFFFFF; text-decoration: none; }
+ .Header a:hover { color: #F8E8E8; text-decoration: none; }
+ .Header a:active { color: #ff8000; text-decoration: none; }
+
+
+ .Contents {
+ 	width: 100%;		/* コンテンツの横幅を指定する */
+ 	overflow: auto; 	/* コンテンツの表示を自動に設定（スクロール） */
+ }
+
+.header_left {
+  font-size: 200%;
+  padding: 10px;
+  float: left;
+}
+
+.header_right {
+  padding: 10px;
+  text-align: right;
+  float: right;
+  /*padding: 5px;*/
+}
+/************************** ボタン用のアイコン  **************************/
+.btn-icon {
+  display: inline-block;
+  width: 160px;
+  height: 60px;
+  max-width: 180px;
+  text-align: center;
+  line-height: 60px;
+  background-color: #660000;
+  font-size: 28px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px 8px 16px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-icon:before {
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  margin-top: -8px;
+}
+
+.btn-icon:hover {
+  opacity: 0.8;
+}

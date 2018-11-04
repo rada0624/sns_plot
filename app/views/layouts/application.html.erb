@@ -10,6 +10,25 @@
   </head>
 
   <body>
+    <div class="Header">
+      <div class="header_left">
+
+        <b><%= link_to '学習状況共有サイト', root_path, method: :get %></b>
+      </div>
+      <div class="header_right">
+        <% if user_signed_in? %>
+        [<%= @users.user_name %>]<br />
+        <%= link_to 'TOP', root_path, method: :get %> |
+        <%= link_to 'マイページ', mypage_path, method: :get %> |
+        <%= link_to '登録情報編集', edit_user_registration_path, method: :get %> |
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <% else %>
+        <%= link_to '新規登録', new_user_registration_path, method: :get %> |
+        <%= link_to 'ログイン', new_user_session_path, method: :get %>
+        <% end %>
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>

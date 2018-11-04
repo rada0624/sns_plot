@@ -3,10 +3,11 @@ class MypageController < ApplicationController
 
     # @users = User.all
     # @users = User.find_by(id: current_user.id)
-    @users = User.find_by(id: current_user.id)
+    # @users = User.find_by(id: current_user.id)
     @histories = Studies_history.new
 
-    @everyone_hisories = Studies_history.limit(10)
+    @everyone_hisories = Studies_history.where(is_open: 1).where.not(users_id: current_user.id).order("created_at DESC").limit(10)
+    @my_hisories = Studies_history.where(users_id: current_user.id).order("created_at DESC").limit(10)
 
     # render :text => 'マイページです'
   end
@@ -18,7 +19,7 @@ class MypageController < ApplicationController
       @create_histries = Studies_history.new(valid_params)
 
       if @create_histries.save
-        # redirect_to
+        redirect_to controller: 'mypage', action: 'home'
       end
   end
 

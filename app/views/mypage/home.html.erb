@@ -1,6 +1,4 @@
-<h2>Hey、<%= @users.user_name %></h2>
-
-<hr />
+<div class="update_form">
 <h2>今日の実績</h2>
 <%= form_for @histories, :url => { :controller => :mypage, :action => :create } do |f| %>
   <div class="field">
@@ -30,14 +28,33 @@
 <br />
 <%= f.submit "追加" %>
 <% end %>
+</div>
 <hr />
-<h2>みんなの実績</h2>
 
-<% @everyone_hisories.each do |ev| %>
-  <div style="border: 1px;">
-  <%= ev.category1 %>（<%= ev.category2 %>）@ID：<%= ev.users_id %><br />
-  <%= ev.content %>
-  </div>
-<br />
+<div class="box">
+  <h2>みんなの実績</h2>
+  <% @everyone_hisories.each do |ev| %>
+      <hr width= "95%" />
+      <font color="#<%= ev.color_code %>">●</font>
+      <%= ev.category1 %>（<%= ev.category2 %>）
+      <%= simple_format(ev.content) %>
+      <span><%= ev.created_at %></span>
+  <% end %>
+</div>
 
-<% end %>
+
+<div class="box">
+  <h2>自分の実績</h2>
+  <% @my_hisories.each do |mv| %>
+    <hr width= "95%" />
+      <font color="#<%= mv.color_code %>">●</font>
+      <%= mv.category1 %>（<%= mv.category2 %>）
+      <% if mv.is_open === 2 %>
+        <b>※非公開</b>
+      <% end %>
+    <%= simple_format(mv.content) %>
+    <span><%= mv.created_at %></span>
+  <% end %>
+</div>
+
+<div class="after_float"></div>
