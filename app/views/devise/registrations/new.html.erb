@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -49,10 +49,10 @@
    <%= f.select :is_open, [["公開する", "1"], ["公開しない", "2"]] ,class:"form-control" %>
   </div>
 
-  <hr>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+<hr />
 
 <%= render "devise/shared/links" %>

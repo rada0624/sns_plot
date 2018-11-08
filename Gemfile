@@ -67,3 +67,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Devise（認証機能）
 gem 'devise'
 gem 'omniauth-twitter'
+
+#カレンダー機能
+gem 'simple_calendar', '~> 2.0'
+gem 'haml-rails'
+
+#カレンダー機能2
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+gem 'jquery-rails'

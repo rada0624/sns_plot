@@ -1,6 +1,9 @@
-<div class="update_form">
-<h2>今日の実績を共有しよう！</h2>
-<%= form_for @histories, :url => { :controller => :mypage, :action => :create } do |f| %>
+<div class="detail_history">
+
+<% if @histories.users_id.to_i.eql?(current_user.id) %>
+<h2>投稿内容を編集する</h2>
+<%= form_for @histories, :url => { :controller => :detail, :action => :create } do |f| %>
+  <%= f.hidden_field :id %>
   <div class="field">
     <%= f.label :"カラーコード" %>
     <%= f.text_field :color_code %>
@@ -25,20 +28,11 @@
     <%= f.label :"公開状況" %><br />
     <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]]) %>
   </div>
-<br />
-<%= f.submit "追加" %>
+<%= f.submit "更新" %>
 <% end %>
+
+<% else %>
+<h2>編集が許可されていません。</h2>
+<% end %>
+
 </div>
-
-<div class="box">
-  <h2> <%= @users.user_name %>の実績</h2>
-  <%= render :partial => "histories", :locals => { local_histories: @my_hisories } %>
-</div>
-
-
-<div class="box">
-  <h2>みんなの実績</h2>
-<%= render :partial => "histories", :locals => { local_histories: @everyone_hisories } %>
-</div>
-
-<div class="after_float"></div>

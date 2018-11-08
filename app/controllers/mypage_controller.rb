@@ -6,8 +6,8 @@ class MypageController < ApplicationController
     # @users = User.find_by(id: current_user.id)
     @histories = Studies_history.new
 
-    @everyone_hisories = Studies_history.where(is_open: 1).where.not(users_id: current_user.id).order("created_at DESC").limit(10)
-    @my_hisories = Studies_history.where(users_id: current_user.id).order("created_at DESC").limit(10)
+    @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(is_open: 1).where.not(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+    @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
 
     # render :text => 'マイページです'
   end
@@ -26,13 +26,15 @@ class MypageController < ApplicationController
   private
   def valid_params
     @create_users_id_seq = 0 # インクリメントされて1になる
-    @temp = Studies_history.find_by(users_id: current_user.id) #.order(users_id_seq: :desc)
+    @temp = Studies_history.select("users_id_seq").where(users_id: current_user.id).order("users_id_seq DESC").limit(1) #.order(users_id_seq: :desc)
 
     @edit_params = params.require(:studies_history).permit(:color_code, :category1, :category2, :content, :is_open)
 
     # 最新の登録データを取得する
     if !@temp.blank?
-      @create_users_id_seq = @temp.users_id_seq
+      @temp.each do |tempElement|
+        @create_users_id_seq = tempElement.users_id_seq
+      end
     end
     @edit_params["users_id_seq"] = @create_users_id_seq.next
     @edit_params["users_id"] = current_user.id

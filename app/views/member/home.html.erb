@@ -1,0 +1,37 @@
+<div class="update_form">
+<h2><%= @member.user_name %>（<%= @member.job %>）</h2>
+  <table>
+    <tr>
+      <td width="130px">ユーザー名</td>
+      <td><%= @member.user_name %></td>
+      </tr>
+      <tr>
+        <td>職業</td>
+        <td><%= @member.job %></td>
+      </tr>
+      <tr>
+        <td>登録日</td>
+        <td><%= @member.created_at %></td>
+      </tr>
+    </table>
+<h2>投稿数</h2>
+<table>
+    <tr>
+      <td width="130px">過去30日</td>
+      <td><%= @month_history.count %></td>
+    </tr>
+    <tr>
+      <td>全期間</td>
+      <td><%= @all_history.count %></td>
+    </tr>
+  </table>
+
+
+</div>
+
+<div class="box">
+  <h2> <%= @member.user_name %>の実績</h2>
+  <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories } %>
+</div>
+
+<div class="after_float"></div>

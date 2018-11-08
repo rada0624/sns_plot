@@ -31,6 +31,12 @@
  	background-color: #660000;	/* ヘッダーの背景色を指定する */
  	color: #FFFFFF;		/* フォントの色を指定する */
  }
+
+ a:link { color: #AA0000; text-decoration: none; }
+ a:visited { color: #AA0000; text-decoration: none; }
+ a:hover { color: #DD0000; text-decoration: none; }
+ a:active { color: #ff8000; text-decoration: none; }
+
  .Header a:link { color: #FFFFFF; text-decoration: none; }
  .Header a:visited { color: #FFFFFF; text-decoration: none; }
  .Header a:hover { color: #F8E8E8; text-decoration: none; }
@@ -83,3 +89,8 @@
 .btn-icon:hover {
   opacity: 0.8;
 }
+
+.btn-icon:link { color: #FFFFFF; text-decoration: none; }
+.btn-icon:visited { color: #FFFFFF; text-decoration: none; }
+.btn-icon:hover { color: #F8E8E8; text-decoration: none; }
+.btn-icon:active { color: #ff8000; text-decoration: none; }
