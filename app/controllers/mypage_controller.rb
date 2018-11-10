@@ -8,6 +8,15 @@ class MypageController < ApplicationController
 
     @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(is_open: 1).where.not(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
     @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+    params[:year] = 2018
+    params[:month] = 11
+    @test_text
+    carender collection: @my_hisories, column: :created_at do |date, histories|
+      @test_text = @test_text + date.day + "<br />"
+    end
+
+
+
 
     # render :text => 'マイページです'
   end

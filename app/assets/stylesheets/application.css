@@ -60,6 +60,20 @@
   float: right;
   /*padding: 5px;*/
 }
+
+.mypage_calender table,td,th {
+  border: 1px #AAAAAA solid;
+}
+
+.mypage_calender th {
+  width:60px;
+}
+.mypage_calender td {
+  height: 60px;
+  vertical-align: top;
+}
+
+
 /************************** ボタン用のアイコン  **************************/
 .btn-icon {
   display: inline-block;

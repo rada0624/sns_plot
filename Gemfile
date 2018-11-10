@@ -76,3 +76,6 @@ gem 'haml-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'jquery-rails'
+
+#カレンダー機能3
+gem 'carender'
