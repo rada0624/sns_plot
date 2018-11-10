@@ -1,0 +1,13 @@
+<h2><%= params[:year] %>年<%= params[:month] %>月の実績</h2>
+<%= link_to "<<前月", mypage_redraw_carender_path(current_year: params[:year], next_month: params[:month]-1), id: 'next_month_button', :method => 'post', remote: true %>
+|
+<%= link_to "今月", mypage_redraw_carender_path(current_year: params[:year], next_month: @today.month), id: 'next_month_button', :method => 'post', remote: true %>
+|
+<%= link_to "翌月>>", mypage_redraw_carender_path(current_year: params[:year], next_month: params[:month]+1), id: 'next_month_button', :method => 'post', remote: true %>
+
+<%= carender collection: local_histories, column: :created_at do |date, histories| %>
+  <%= date.day %>
+    <% histories.each do |his|  %><br />
+        <font color="#<%= his.color_code %>">●</font>
+    <% end %>
+<% end %>

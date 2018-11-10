@@ -18,28 +18,16 @@
 
   <div class="field">
     <%= f.label :"本文" %><br />
-    <%= f.text_area :content, :size=>"60x30" %>
+    <%= f.text_area :content, :size=>"60x15" %>
   </div>
 
   <div class="field">
-    <%= f.label :"公開状況" %><br />
+    <%= f.label :"公開状況" %>
     <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]]) %>
   </div>
-<br />
 <%= f.submit "追加" %>
 <% end %>
 </div>
-
-<div class="update_form mypage_calender">
-<h2>今月の実績</h2>
-<%= carender collection: @my_hisories, column: :created_at do |date, histories| %>
-
-  <%= date.day %>
-    <% histories.each do |his|  %><br />
-        <font color="#<%= his.color_code %>">●</font>
-    <% end %>
-<% end %>
-
 </div>
 
 <div class="box">
@@ -51,6 +39,12 @@
 <div class="box">
   <h2>みんなの実績</h2>
 <%= render :partial => "histories", :locals => { local_histories: @everyone_hisories } %>
+</div>
+
+<div class="mypage_calender_box">
+  <div class="mypage_calender" id="mypage_calender">
+    <%= render :partial => "redraw", :locals => { local_histories: @my_hisories } %>
+  </div>
 </div>
 
 <div class="after_float"></div>

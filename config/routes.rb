@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'index#index'
   get  'mypage'        => 'mypage#home'
   post 'mypage/update' => 'mypage#create'
+  post 'mypage/redraw_carender' => 'mypage#redraw_carender'
 
   get  '/detail/:id'       , to: 'detail#home'
   get  '/detail/:id/edit'  , to: 'detail#edit'
