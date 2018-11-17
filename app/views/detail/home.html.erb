@@ -4,24 +4,22 @@
   <h2>この投稿は存在しません。</h2>
 <% else %>
 
-<% @detail_hisory.each do |ev| %>
-<% if ev.is_open === 2 %>
-  <h2>非公開に設定されています。</h2>
-<% else %>
+  <% @detail_hisory.each do |ev| %>
+    <% if ev.is_open === 1 || ev.users_id.to_i.eql?(current_user.id) %>
+      <h1>
+        <font color="#<%= ev.color_code %>">●</font>
+        <a href="/detail/<%= ev.id %>"><%= ev.category1 %>（<%= ev.category2 %>）</a>
+      </h1>
+      【作成者】<a href="/member/<%= ev.users_id %>"><%= ev.user_name %></a>【共有日】<%= ev.created_at %>
 
-  <h1>
-    <font color="#<%= ev.color_code %>">●</font>
-    <a href="/detail/<%= ev.id %>"><%= ev.category1 %>（<%= ev.category2 %>）</a>
-  </h1>
-    【作成者】<a href="/member/<%= ev.users_id %>"><%= ev.user_name %></a>【共有日】<%= ev.created_at %>
-
-    <% if ev.users_id.to_i.eql?(current_user.id) %>
-    【操作】<a href="/detail/<%= ev.id %>/edit">編集</a>
-    <% end %>
-
-    <hr width="95%"/>
-    <%= simple_format(ev.content) %>
-    <span><%= ev.created_at %></span>
+      <% if ev.users_id.to_i.eql?(current_user.id) %>
+      【操作】<a href="/detail/<%= ev.id %>/edit">編集</a>
+      <% end %>
+      <hr width="95%"/>
+      <%= simple_format(ev.content) %>
+      <span><%= ev.created_at %></span>
+    <% else %>
+      <h2>非公開に設定されています。</h2>
     <% end %>
   <% end %>
 <% end %>

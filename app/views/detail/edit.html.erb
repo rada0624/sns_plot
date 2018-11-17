@@ -26,7 +26,7 @@
 
   <div class="field">
     <%= f.label :"公開状況" %><br />
-    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]]) %>
+    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]], @histories.is_open)  %>
   </div>
 <%= f.submit "更新" %>
 <% end %>

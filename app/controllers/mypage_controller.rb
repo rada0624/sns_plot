@@ -5,13 +5,20 @@ class MypageController < ApplicationController
     # @users = User.find_by(id: current_user.id)
     # @users = User.find_by(id: current_user.id)
     @histories = Studies_history.new
+    @who = 1
 
     @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(is_open: 1).where.not(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
-    @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+    # @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at ASC")
     @today = Date.today
     params[:year] = @today.year
     params[:month] = @today.month
     @current_year = @today.year
+
+    @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
+    .where(users_id: current_user.id)
+    .where('studies_histories.created_at >= ?', Time.local(@today.year, @today.month, 1))
+    .where('studies_histories.created_at <= ?', Time.local(@today.year, @today.month, 1).end_of_month)
+
 
     # render :text => 'マイページです'
   end
@@ -49,6 +56,18 @@ class MypageController < ApplicationController
     @today = Date.today
     params[:year] = @next_year.to_i
     params[:month] = @next_month.to_i
+  end
+
+  def redraw_history
+    @who = params[:who].to_i
+
+    if @who === 1
+      @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(is_open: 1).where.not(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+    end
+
+    if @who === 2
+      @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+    end
   end
 
   private

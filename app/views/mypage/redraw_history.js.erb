@@ -1,0 +1,2 @@
+$("#history")
+ .html("<%= escape_javascript( render :partial => 'histories', :locals => { local_histories: @everyone_hisories, who: @who } )%>");

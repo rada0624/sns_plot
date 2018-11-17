@@ -30,20 +30,16 @@
 </div>
 </div>
 
-<div class="box">
-  <h2> <%= @users.user_name %>の実績</h2>
-  <%= render :partial => "histories", :locals => { local_histories: @my_hisories } %>
-</div>
-
-
-<div class="box">
-  <h2>みんなの実績</h2>
-<%= render :partial => "histories", :locals => { local_histories: @everyone_hisories } %>
-</div>
-
 <div class="mypage_calender_box">
   <div class="mypage_calender" id="mypage_calender">
     <%= render :partial => "redraw", :locals => { local_histories: @my_hisories } %>
+  </div>
+</div>
+
+
+<div class="box">
+  <div id="history">
+    <%= render :partial => "histories", :locals => { local_histories: @everyone_hisories, who: @who } %>
   </div>
 </div>
 

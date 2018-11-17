@@ -18,7 +18,7 @@
  body{
  	margin: 20px;					/* bodyの外側の余白を指定する */
  	padding: 50px 10px 50px 10px;	/* bodyの内側余白を指定する(上:右:下:左) */
-  font-family: '游ゴシック';
+  font-family: 'メイリオ';
   background-color: #f5f5f5;
  }
  .Header {
@@ -66,14 +66,37 @@
 }
 
 .mypage_calender th {
-  width:60px;
+  width:85px;
+  min-width: 50px;
 }
 .mypage_calender td {
-  height: 60px;
+  height: 80px;
+  min-height: 50px;
   vertical-align: top;
 }
 
-
+div.message {
+  float: left;
+}
+.message {
+    position: relative;
+}
+.message span.remark {
+    display: none;
+}
+.message a:hover span.remark {
+    font-size: 100%;
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #CCCCCC;
+    color: #000000;
+    display: block;
+    line-height: 1.2em;
+    margin: 0.5em;
+    padding: 0.5em;
+    position: absolute;
+    top: 20px; /* def:50px */
+    width: 450px;
+}
 /************************** ボタン用のアイコン  **************************/
 .btn-icon {
   display: inline-block;

@@ -6,8 +6,21 @@
 <%= link_to "翌月>>", mypage_redraw_carender_path(current_year: params[:year], next_month: params[:month]+1), id: 'next_month_button', :method => 'post', remote: true %>
 
 <%= carender collection: local_histories, column: :created_at do |date, histories| %>
-  <%= date.day %>
-    <% histories.each do |his|  %><br />
-        <font color="#<%= his.color_code %>">●</font>
+  <%= date.day %><br />
+    <% histories.each do |ev|  %>
+    <div class="message">
+      <a href="/detail/<%= ev.id %>">
+        <font color="#<%= ev.color_code %>">●</font>
+        <span class="remark">
+          <% if ev.is_open === 1 || @who === 1 %>
+            <%= ev.category1 %>：<%= ev.category2 %>
+            <hr />
+            <%= simple_format(ev.content) %>
+          <% else %>
+            この投稿は非公開に設定されています。
+          <% end %>
+        </span>
+        </a>
+        </div>
     <% end %>
 <% end %>

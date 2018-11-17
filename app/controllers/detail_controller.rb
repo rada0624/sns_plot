@@ -17,7 +17,7 @@ class DetailController < ApplicationController
     @temp = params["studies_history"]
 
     @create_histries = Studies_history.find(@temp["id"])
-    @create_histries.update_attributes(:color_code => @temp["color_code"], :category1 => @temp["category1"], :category2 => @temp["category2"], :content => @temp["content"], :is_open => @temp["is_open"])
+    @create_histries.update_attributes(:is_open => @temp["is_open"], :color_code => @temp["color_code"], :category1 => @temp["category1"], :category2 => @temp["category2"], :content => @temp["content"] )
 
 
     if @create_histries.save

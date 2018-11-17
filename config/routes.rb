@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get  'mypage'        => 'mypage#home'
   post 'mypage/update' => 'mypage#create'
   post 'mypage/redraw_carender' => 'mypage#redraw_carender'
+  post 'mypage/redraw_history' => 'mypage/redraw_history'
 
   get  '/detail/:id'       , to: 'detail#home'
   get  '/detail/:id/edit'  , to: 'detail#edit'

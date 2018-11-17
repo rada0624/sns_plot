@@ -29,9 +29,16 @@
 
 </div>
 
+<div class="mypage_calender_box">
+  <div class="mypage_calender" id="mypage_calender">
+    <%= render :partial => "/mypage/redraw", :locals => { local_histories: @my_hisories } %>
+  </div>
+</div>
+
+
 <div class="box">
   <h2> <%= @member.user_name %>の実績</h2>
-  <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories } %>
+  <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories, who: 1 } %>
 </div>
 
 <div class="after_float"></div>

@@ -12,6 +12,18 @@ class MemberController < ApplicationController
     # 全投稿件数
     @all_history = Studies_history.joins(:users).select("id").where(users_id: @member_id)
 
+    @today = Date.today
+    params[:year] = @today.year
+    params[:month] = @today.month
+    @current_year = @today.year
+
+
+    @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
+    .where(users_id: @member_id)
+    .where('studies_histories.created_at >= ?', Time.local(@today.year, @today.month, 1))
+    .where('studies_histories.created_at <= ?', Time.local(@today.year, @today.month, 1).end_of_month)
+
+
     # @month_history = Studies_history.joins(:users).select("id").where(users_id: @member_id, )
 
 
