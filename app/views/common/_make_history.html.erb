@@ -1,0 +1,28 @@
+<%= form_for local_make_histories, :url => local_path do |f| %>
+  <%= f.hidden_field :id %>
+  <div class="field">
+    <%= f.select :category1, Category.all.map{|cat|[
+    cat.category1,
+    cat.id,
+    {} ]},
+    {},
+    {id: "parent"} %>
+
+    <%= f.select :category2, Sub_category.all.map{|cat|[
+      cat.category2,
+      cat.id,
+      {'data-val'=> cat.categry_id} ]},
+      {},
+      {id: "children"} %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :content, :size=>"60x15" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"公開状況" %>
+    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]],local_make_histories.is_open) %>
+  </div>
+<%= f.submit "追加" %>
+<% end %>

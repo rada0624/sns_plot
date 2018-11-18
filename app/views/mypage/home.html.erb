@@ -1,33 +1,7 @@
 <div class="update_form">
-<h2>今日の実績を共有しよう！</h2>
-<%= form_for @histories, :url => { :controller => :mypage, :action => :create } do |f| %>
-  <div class="field">
-    <%= f.label :"カラーコード" %>
-    <%= f.text_field :color_code %>
+  <h2>今日の実績を共有しよう！</h2>
+    <%= render :partial => "/common/make_history", :locals => { local_make_histories: @histories, local_path: mypage_update_path } %>
   </div>
-
-  <div class="field">
-    <%= f.label :"大カテゴリ" %>
-    <%= f.text_field :category1 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"小カテゴリ" %>
-    <%= f.text_field :category2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"本文" %><br />
-    <%= f.text_area :content, :size=>"60x15" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"公開状況" %>
-    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]]) %>
-  </div>
-<%= f.submit "追加" %>
-<% end %>
-</div>
 </div>
 
 <div class="mypage_calender_box">

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_044318) do
+ActiveRecord::Schema.define(version: 2018_11_18_070938) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "category1", limit: 100, null: false
+    t.integer "is_open", null: false
+    t.integer "disp_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "studies_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "users_id"
@@ -20,6 +28,16 @@ ActiveRecord::Schema.define(version: 2018_10_30_044318) do
     t.string "category2", limit: 100
     t.text "content"
     t.integer "is_open", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "categry_id"
+    t.string "category2", limit: 100, null: false
+    t.string "color_code", limit: 30, null: false
+    t.integer "is_open", null: false
+    t.integer "disp_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

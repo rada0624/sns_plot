@@ -94,7 +94,8 @@ div.message {
     margin: 0.5em;
     padding: 0.5em;
     position: absolute;
-    top: 20px; /* def:50px */
+    top: 5px; /* def:50px */
+    left : -5px;
     width: 450px;
 }
 /************************** ボタン用のアイコン  **************************/

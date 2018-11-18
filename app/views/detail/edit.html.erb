@@ -2,35 +2,7 @@
 
 <% if @histories.users_id.to_i.eql?(current_user.id) %>
 <h2>投稿内容を編集する</h2>
-<%= form_for @histories, :url => { :controller => :detail, :action => :create } do |f| %>
-  <%= f.hidden_field :id %>
-  <div class="field">
-    <%= f.label :"カラーコード" %>
-    <%= f.text_field :color_code %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"大カテゴリ" %>
-    <%= f.text_field :category1 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"小カテゴリ" %>
-    <%= f.text_field :category2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"本文" %><br />
-    <%= f.text_area :content, :size=>"60x30" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"公開状況" %><br />
-    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]], @histories.is_open)  %>
-  </div>
-<%= f.submit "更新" %>
-<% end %>
-
+  <%= render :partial => "/common/make_history", :locals => { local_make_histories: @histories, local_path: detail_update_path } %>
 <% else %>
 <h2>編集が許可されていません。</h2>
 <% end %>

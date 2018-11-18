@@ -15,3 +15,27 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// 大カテゴリと小カテゴリを連動する処理
+$(function($) {
+  // 小カテゴリの要素を変数に入れる
+  var $children = $('#children');
+  // 後のイベントで、不要なoption要素を削除するため、オリジナルを取得しておく
+  var original = $children.html();
+
+  $('#parent').change(function() {
+    //選択された大カテゴリのvalueを取得し変数に入れる
+    var val1 = $(this).val();
+
+    //削除された要素をもとに戻すため.html(original)を入れておく
+    $children.html(original).find('option').each(
+      function() {
+      var val2 = $(this).data('val'); //data-valの値を取得
+
+      //valueと異なるdata-valを持つ要素を削除
+      if (val1 != val2) {
+        $(this).remove();
+      }
+    });
+  });
+});
