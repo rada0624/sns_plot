@@ -1,5 +1,6 @@
 <div class="update_form">
   <h2>今日の実績を共有しよう！</h2>
+  <hr />
     <%= render :partial => "/common/make_history", :locals => { local_make_histories: @histories, local_path: mypage_update_path } %>
   </div>
 </div>
@@ -11,10 +12,8 @@
 </div>
 
 
-<div class="box">
-  <div id="history">
+<div id="history_box">
     <%= render :partial => "histories", :locals => { local_histories: @everyone_hisories, who: @who } %>
-  </div>
 </div>
 
 <div class="after_float"></div>

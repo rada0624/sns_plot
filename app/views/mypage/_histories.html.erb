@@ -8,9 +8,9 @@
     <%= link_to "最新", mypage_redraw_history_path(who: "1"), :method => 'post', remote: true %>
   <% end %>
 </h2>
-
+<hr />
+<div id="history">
 <% local_histories.each do |ev| %>
-    <hr width= "95%" />
     <font color="#<%= ev.color_code %>">●</font>
     <a href="/detail/<%= ev.id %>">
       <%= ev.category1 %>：<%= ev.category2 %>
@@ -21,4 +21,7 @@
     </a>
     <%= simple_format(ev.content) %>
     <span><%= ev.created_at %></span>
+    <hr width= "95%" />
 <% end %>
+</div>
+<hr />

@@ -5,15 +5,16 @@
     cat.category1,
     cat.id,
     {} ]},
-    {},
+    {:include_blank => "大カテゴリ" },
     {id: "parent"} %>
+    <br />
 
     <%= f.select :category2, Sub_category.all.map{|cat|[
       cat.category2,
       cat.id,
       {'data-val'=> cat.categry_id} ]},
-      {},
-      {id: "children"} %>
+      {:include_blank => "小カテゴリ"},
+      {id: "children", :selected => ""} %>
   </div>
 
   <div class="field">

@@ -25,8 +25,6 @@
       <td><%= @all_history.count %></td>
     </tr>
   </table>
-
-
 </div>
 
 <div class="mypage_calender_box">
@@ -36,9 +34,9 @@
 </div>
 
 
-<div class="box">
+<div id="history_box">
   <h2> <%= @member.user_name %>の実績</h2>
-  <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories, who: 1 } %>
+  <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories, who: 0 } %>
 </div>
 
 <div class="after_float"></div>
