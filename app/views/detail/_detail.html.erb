@@ -1,21 +1,29 @@
-<br>
 <div class="detail_history_modal">
 <% if ev.blank? %>
   <h2>この投稿は存在しません。</h2>
 <% else %>
-
     <% if ev.is_open === 1 || ev.users_id.to_i.eql?(current_user.id) %>
-      <h1>
-        <font color="#<%= ev.color_code %>">●</font>
+    <div class="detail_header" style="background-color:#<%= ev.color_code %>; color: #FFFFFF;">
+      <h1 style="margin-top:0; margin-bottom: 0; padding: 20px;">
         <a href="/detail/<%= ev.id %>" target="_blank"><%= ev.category1 %>（<%= ev.category2 %>）</a>
       </h1>
+    </div>
       【作成者】<a href="/member/<%= ev.users_id %>"><%= ev.user_name %></a>【共有日】<%= ev.created_at %>
 
       <% if ev.users_id.to_i.eql?(current_user.id) %>
-      【操作】<a href="/detail/<%= ev.id %>/edit">編集</a>
+      【操作】
+        <%= link_to "さくっと編集", mypage_get_edit_history_data_path(history_id: ev.id), :method => 'post', :class => "ajax_on", remote: true %> |
+        <a href="/detail/<%= ev.id %>/edit">じっくり編集</a>
       <% end %>
       <hr width="95%"/>
-      <%= simple_format(ev.content) %>    <% else %>
+      <div id="detail_history_modal_content_<%= ev.id %>">
+        <div class="detail_history_modal_content">
+          <%= simple_format(ev.content) %>
+        </div>
+      </div>
+      <hr width="95%">
+
+    <% else %>
       <h2>非公開に設定されています。</h2>
     <% end %>
   <% end %>

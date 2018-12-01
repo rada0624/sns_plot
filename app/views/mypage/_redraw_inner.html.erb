@@ -1,0 +1,31 @@
+<%= carender collection: local_histories, column: :created_at do |date, histories| %>
+  <%= date.day %><br />
+    <% histories.each do |ev|  %>
+    <div class="message">
+      <a href="#modal<%= ev.id%>" class="modalOpen">
+        <font color="#<%= ev.color_code %>">●</font>
+        <span class="remark">
+          <% if ev.is_open === 1 || @who === 1 %>
+            <%= ev.category1 %>：<%= ev.category2 %>
+            <hr />
+            <%= simple_format(ev.content) %>
+          <% else %>
+            この投稿は非公開に設定されています。
+          <% end %>
+        </span>
+      </a>
+
+      <!-- モーダルウィンドウ -->
+      <div class="modal" id="modal<%= ev.id%>">
+        <!-- モーダルウィンドウが開いている時のオーバーレイ -->
+        <div class="overLay modalClose">
+        </div>
+        <!-- モーダルウィンドウの中身 -->
+        <div class="inner">
+          <%= render :partial => "/detail/detail", :locals => { ev: ev } %>
+          <p style="text-align: right;"><a href="" class="modalClose">閉じる</a></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

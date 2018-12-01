@@ -13,11 +13,19 @@
 
 .detail_history_modal {
   font-size: 100%;
-  width : 97%;
+  width : 100%;
   height: 80%;
-  min-width: 400px;
+  min-width: 450px;
   background-color: #FFFFFF;
   margin-left: auto;
   margin-right: auto;
+
+}
+
+.detail_history_modal_content {
+  margin-left: auto;
+  margin-right: auto;
   overflow-y: scroll;
+  width : 97%;
+  height: 350px;
 }

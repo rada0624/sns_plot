@@ -14,14 +14,24 @@
  *= require_self
  */
 
+ /* 参考にしたカラーパレット：https://flatuicolors.com/palette/defo */
+:root {
+  --main-color: #16a085;
+  --sub-color:  #16a085;
+  --sub-color-2: #d8fff7;
+
+}
 
  body{
  	margin: 20px;					/* bodyの外側の余白を指定する */
  	padding: 50px 10px 50px 10px;	/* bodyの内側余白を指定する(上:右:下:左) */
-  font-family: 'メイリオ';
-  color: #555555;
-  background-color: #f5f5f5;
+  color: #606060;
+  background-color: #f9fff4;
  }
+ body, textarea {
+   font-family: 'メイリオ';
+ }
+
  .Header {
  	position: fixed;	/* ヘッダーを固定する */
  	top: 0;				/* 上部から配置の基準位置を決める */
@@ -29,14 +39,14 @@
  	width: 100%;		/* ヘッダーの横幅を指定する */
  	height: 70px;		/* ヘッダーの高さを指定する */
  	padding: 0px;		/* ヘッダーの余白を指定する(上下左右) */
- 	background-color: #660000;	/* ヘッダーの背景色を指定する */
+ 	background-color: var(--main-color);	/* ヘッダーの背景色を指定する */
  	color: #FFFFFF;		/* フォントの色を指定する */
  }
 
- a:link { color: #AA0000; text-decoration: none; }
- a:visited { color: #AA0000; text-decoration: none; }
- a:hover { color: #DD0000; text-decoration: none; }
- a:active { color: #ff8000; text-decoration: none; }
+ a:link { color: var(--sub-color); text-decoration: none; }
+ a:visited { color: var(--sub-color); text-decoration: none; }
+ a:hover { color: var(sub-color-2); text-decoration: none; }
+ a:active { color: var(sub-color-2); text-decoration: none; }
 
  .Header a:link { color: #FFFFFF; text-decoration: none; }
  .Header a:visited { color: #FFFFFF; text-decoration: none; }
@@ -158,18 +168,31 @@ div.message {
 
 /* モーダルウィンドウの中身のスタイル */
 .modal .inner {
-  margin: 10px;
-  padding: 10px;
+  margin: 0px;
+  padding: 0px;
   background-color: #FFFFFF;
   position:fixed;
   z-index:11;
   top:50%;
   left:50%;
   width: 900px;
-  height: 500px;
+  height: 600px;
   transform:translate(-50%,-50%);
 }
 
+.edit_area {
+  width: 870px;
+  height: 270px;
+  background-color: #FFE0E0;
+}
+
+.detail_header {
+  width: 100%;
+}
+.detail_header a:link { color: #FFFFFF; text-decoration: none; }
+.detail_header a:visited { color: #FFFFFF; text-decoration: none; }
+.detail_header a:hover { color: #F8E8E8; text-decoration: none; }
+.detail_header a:active { color: #ff8000; text-decoration: none; }
 
 /************************** ボタン用のアイコン  **************************/
 .btn-icon {
@@ -179,7 +202,7 @@ div.message {
   max-width: 180px;
   text-align: center;
   line-height: 60px;
-  background-color: #660000;
+  background-color: var(--main-color);
   font-size: 28px;
   color: #FFF;
   text-decoration: none;
@@ -205,3 +228,25 @@ div.message {
 .btn-icon:visited { color: #FFFFFF; text-decoration: none; }
 .btn-icon:hover { color: #F8E8E8; text-decoration: none; }
 .btn-icon:active { color: #ff8000; text-decoration: none; }
+
+
+/* インジケータを背景に表示。サイズを100%にすることでモーダルになる。 */
+/* 背景色と透過率は好みで */
+#loading {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f7f7f9;
+  filter: alpha(opacity=65);
+  -moz-opacity: 0.65;
+  -khtml-opacity: 0.65;
+  opacity: 0.65;
+  background-image: url('../assets/ajax-loader.gif');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: none;
+}

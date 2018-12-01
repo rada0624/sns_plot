@@ -1,2 +1,9 @@
-$("#mypage_calender")
- .html("<%= escape_javascript(render :partial => 'redraw', :locals => { local_histories: @my_hisories } )%>");
+$("#calender_inner")
+ .html("<%= escape_javascript(render :partial => '/mypage/redraw_inner', :locals => { local_histories: @my_hisories } )%>");
+ $("#calender_head")
+  .html("<%= @next_year.to_i %>年<%= @next_month.to_i %>月の実績");
+
+$("#current_year")
+ .val("<%= @next_year.to_i %>");
+$("#current_month")
+  .val("<%= @next_month.to_i %>");

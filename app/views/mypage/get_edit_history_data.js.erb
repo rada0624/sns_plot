@@ -1,0 +1,2 @@
+$("#detail_history_modal_content_" + <%= @edit_history.id %>)
+  .html("<%= escape_javascript(render :partial => '/mypage/edit_history_form', :locals => { local_make_histories: @edit_history, local_path: mypage_update_path })%>");

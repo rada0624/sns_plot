@@ -3,16 +3,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'index#index'
-  get  'mypage'        => 'mypage#home'
-  post 'mypage/update' => 'mypage#create'
-  post 'mypage/redraw_carender' => 'mypage#redraw_carender'
-  post 'mypage/redraw_history' => 'mypage/redraw_history'
+  get   'mypage'        => 'mypage#home'
+  post  'mypage/create' => 'mypage#create'
+  patch 'mypage/update' => 'mypage#update'
+  post  'mypage/redraw_carender' => 'mypage#redraw_carender'
+  post  'mypage/redraw_history' => 'mypage#redraw_history'
+  post  'mypage/get_edit_history_data' => 'mypage#get_edit_history_data'
+  # post ''
 
-  get  '/detail/:id'       , to: 'detail#home'
-  get  '/detail/:id/edit'  , to: 'detail#edit'
+  get   '/detail/:id'       , to: 'detail#home'
+  get   '/detail/:id/edit'  , to: 'detail#edit'
   patch '/detail/update', to: 'detail#create'
 
-  get '/member/:id', to: 'member#home'
+  get   '/member/:id', to: 'member#home'
 
 
 end

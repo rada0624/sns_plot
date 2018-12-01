@@ -35,17 +35,34 @@ class MypageController < ApplicationController
   end
 
   def redraw_carender
-    @next_year = params[:current_year].to_i
-    @next_month = params[:next_month].to_i
+    # raise.params.inspect
 
-    if @next_month === 0
-      @next_month = 12
-      @next_year = next_year - 1
+    @next_year  = params[:current_year].to_i
+    @next_month = params[:current_month].to_i
+
+    @today = Date.today
+
+    if params[:next]
+      @next_month = @next_month + 1
+
+      if @next_month === 13
+        @next_month = 1
+        @next_year  = @next_year + 1
+      end
     end
 
-    if @next_month === 13
-      @next_month = 1
-      @next_year = @next_year + 1
+    if params[:last]
+      @next_month = @next_month - 1
+
+      if @next_month === 0
+        @next_month = 12
+        @next_year  = @next_year - 1
+      end
+    end
+
+    if params[:now]
+      @next_year  = @today.year.to_i
+      @next_month = @today.month.to_i
     end
 
     @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
@@ -53,9 +70,9 @@ class MypageController < ApplicationController
     .where('studies_histories.created_at >= ?', Time.local(@next_year, @next_month, 1))
     .where('studies_histories.created_at <= ?', Time.local(@next_year, @next_month, 1).end_of_month)
 
-    @today = Date.today
     params[:year] = @next_year.to_i
     params[:month] = @next_month.to_i
+
   end
 
   def redraw_history
@@ -68,6 +85,21 @@ class MypageController < ApplicationController
     if @who === 2
       @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
     end
+  end
+
+  def get_edit_history_data
+    @edit_history = Studies_history.find(params[:history_id])
+  end
+
+  def update
+    # デバッグ用。送信されている値を全て確認する
+    # raise.params.inspect
+    @temp = params["studies_history"]
+    @update_history = Studies_history.find(@temp["id"])
+    @update_history.update(:content => @temp["content"], :is_open => @temp["is_open"])
+    @update_history.save
+
+    @return_history = Studies_history.find(@temp["id"])
   end
 
   private

@@ -50,7 +50,7 @@ $(function($) {
 // モーダルウィンドウ
 $(function(){
   // モーダルウィンドウが開くときの処理
-  $(".modalOpen").click(function(){
+  $("#calender_inner").on("click",".modalOpen", function(){
 
     var navClass = $(this).attr("class"),
         href = $(this).attr("href");
@@ -60,9 +60,20 @@ $(function(){
     return false;
   });
   // モーダルウィンドウが閉じるときの処理
-  $(".modalClose").click(function(){
+  $("#calender_inner").on("click", ".modalClose", function(){
     $(this).parents(".modal").fadeOut();
     $(".modalOpen").removeClass("open");
     return false;
+  });
+});
+
+// ajax通信時にインジケーター（now loading）を表示
+$(function() {
+  $(document)
+  .on("ajax:beforeSend",".ajax_on, .edit_studies_history", function() {
+    $('#loading').show();
+  })
+  .on("ajax:complete",".ajax_on, .edit_studies_history", function() {
+    $('#loading').hide();
   });
 });

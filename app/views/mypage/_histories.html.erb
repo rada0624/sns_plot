@@ -1,11 +1,11 @@
 <h2>
   <% if who === 1 %>
-  <%= link_to "#{@users.user_name}", mypage_redraw_history_path(who: "2"), :method => 'post', remote: true %> |
+  <%= link_to "#{@users.user_name}", mypage_redraw_history_path(who: "2"), :method => 'post', :class => "ajax_on", remote: true %> |
   最新
   <% end %>
   <% if who === 2 %>
     <%= @users.user_name %> |
-    <%= link_to "最新", mypage_redraw_history_path(who: "1"), :method => 'post', remote: true %>
+    <%= link_to "最新", mypage_redraw_history_path(who: "1"), :method => 'post', :class => "ajax_on", remote: true %>
   <% end %>
 </h2>
 <hr />

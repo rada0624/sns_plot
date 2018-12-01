@@ -1,40 +1,16 @@
-<h2><%= params[:year] %>年<%= params[:month] %>月の実績</h2>
+<h2 id="calender_head"><%= params[:year] %>年<%= params[:month] %>月の実績</h2>
+
+<%= form_with url: mypage_redraw_carender_path, :class => "ajax_on", remote: true do |f| %>
+
+<%=f.hidden_field :current_year  ,:value => params[:year]   %>
+<%=f.hidden_field :current_month ,:value => params[:month]  %>
 <hr />
-<%= link_to "<<前月", mypage_redraw_carender_path(current_year: params[:year], next_month: params[:month]-1), id: 'next_month_button', :method => 'post', remote: true %>
+<%= f.submit "前月", name: "last" %>
 |
-<%= link_to "今月", mypage_redraw_carender_path(current_year: params[:year], next_month: @today.month), id: 'next_month_button', :method => 'post', remote: true %>
+<%= f.submit "今月", name: "now" %>
 |
-<%= link_to "翌月>>", mypage_redraw_carender_path(current_year: params[:year], next_month: params[:month]+1), id: 'next_month_button', :method => 'post', remote: true %>
-
-<%= carender collection: local_histories, column: :created_at do |date, histories| %>
-  <%= date.day %><br />
-    <% histories.each do |ev|  %>
-    <div class="message">
-      <a href="#modal<%= ev.id%>" class="modalOpen">
-        <font color="#<%= ev.color_code %>">●</font>
-        <span class="remark">
-          <% if ev.is_open === 1 || @who === 1 %>
-            <%= ev.category1 %>：<%= ev.category2 %>
-            <hr />
-            <%= simple_format(ev.content) %>
-          <% else %>
-            この投稿は非公開に設定されています。
-          <% end %>
-        </span>
-        </a>
-
-        <!-- モーダルウィンドウ -->
-        <div class="modal" id="modal<%= ev.id%>">
-
-          <!-- モーダルウィンドウが開いている時のオーバーレイ -->
-          <div class="overLay modalClose"></div>
-
-          <!-- モーダルウィンドウの中身 -->
-          <div class="inner"><%= render :partial => "/detail/detail", :locals => { ev: ev } %>
-            <a href="" class="modalClose">閉じる</a>
-          </div>
-
-
-        </div>
-    <% end %>
+<%= f.submit "翌月", name: "next" %>
 <% end %>
+<div id="calender_inner">
+  <%= render :partial => "/mypage/redraw_inner", :locals => { local_histories: local_histories } %>
+</div>
