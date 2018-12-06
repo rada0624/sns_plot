@@ -77,3 +77,18 @@ $(function() {
     $('#loading').hide();
   });
 });
+
+// カテゴリ選択時
+$(function() {
+  $('.stylish_category_radio').children('input[type="radio"]')
+  .change( function() {
+    var checked_val = $(this).val().toLowerCase();
+    var test = 'input:hidden[name="h_' + checked_val + '"]' ;
+    var after_color = "#" + $(test).val();
+    $('.stylish_category_radio label')
+    .css('background-color', '#bdc3c7');
+
+    $('label.' + checked_val)
+    .css('background-color', after_color);
+  })
+});

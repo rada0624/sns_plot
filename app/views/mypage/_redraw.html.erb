@@ -2,14 +2,14 @@
 
 <%= form_with url: mypage_redraw_carender_path, :class => "ajax_on", remote: true do |f| %>
 
-<%=f.hidden_field :current_year  ,:value => params[:year]   %>
-<%=f.hidden_field :current_month ,:value => params[:month]  %>
-<hr />
-<%= f.submit "前月", name: "last" %>
-|
-<%= f.submit "今月", name: "now" %>
-|
-<%= f.submit "翌月", name: "next" %>
+  <%=f.hidden_field :current_year  ,:value => params[:year]   %>
+  <%=f.hidden_field :current_month ,:value => params[:month]  %>
+  <hr />
+  <div class="flex">
+    <%= f.submit "前月", name: "last", :class => "body-button" %>
+    <%= f.submit "今月", name: "now" , :class => "body-button" %>
+    <%= f.submit "翌月", name: "next", :class => "body-button" %>
+  </div>
 <% end %>
 <div id="calender_inner">
   <%= render :partial => "/mypage/redraw_inner", :locals => { local_histories: local_histories } %>

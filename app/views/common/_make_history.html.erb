@@ -1,29 +1,29 @@
 <%= form_for local_make_histories, :url => local_path do |f| %>
+
   <%= f.hidden_field :id %>
-  <div class="field">
-    <%= f.select :category1, Category.all.map{|cat|[
-    cat.category1,
-    cat.id,
-    {} ]},
-    {:include_blank => "大カテゴリ" },
-    {id: "parent"} %>
-    <br />
+  <div class="stylish_category_radio">
+  <% Field.where(user_id: current_user.id, is_available: 1).each do |test| %>
+    <%= f.radio_button :category2, test.category2 %>
+    <label for="studies_history_category2_<%= test.category2.downcase %>" class="<%= test.category2.downcase %>"><%= test.category2 %></label>
 
-    <%= f.select :category2, Sub_category.all.map{|cat|[
-      cat.category2,
-      cat.id,
-      {'data-val'=> cat.categry_id} ]},
-      {:include_blank => "小カテゴリ"},
-      {id: "children", :selected => ""} %>
+    <input type="hidden" id="h_<%= test.category2.downcase %>" name="h_<%= test.category2.downcase %>" value="<%= test.color_code %>">
+
+
+
+  <% end %>
   </div>
 
   <div class="field">
-    <%= f.text_area :content, :size=>"60x15" %>
+    <%= f.text_area :content, :class => "update_form_field" %>
   </div>
 
-  <div class="field">
-    <%= f.label :"公開状況" %>
-    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]],local_make_histories.is_open) %>
+  <div class="stylish_radio">
+    <%= f.radio_button :is_open, "1", :checked => true %>
+    <%= f.label :is_open, "公開する", :value => "1" %>
+    <%= f.radio_button :is_open, "2" %>
+    <%= f.label :is_open, "公開しない", :value => "2" %>
   </div>
-<%= f.submit "追加" %>
+  <br>
+  <br>
+<%= f.submit "追加", :class => "body-button" %>
 <% end %>

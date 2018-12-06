@@ -1,31 +1,37 @@
 <div class="update_form">
-<h2><%= @member.user_name %>（<%= @member.job %>）</h2>
+<h2>ユーザー情報</h2>
   <table>
     <tr>
-      <td width="130px">ユーザー名</td>
+      <th width="130px">ユーザー名</th>
       <td><%= @member.user_name %></td>
       </tr>
       <tr>
-        <td>職業</td>
+        <th>職業</th>
         <td><%= @member.job %></td>
       </tr>
       <tr>
-        <td>登録日</td>
+        <th>登録日</th>
         <td><%= @member.created_at %></td>
       </tr>
     </table>
 <h2>投稿数</h2>
 <table>
     <tr>
-      <td width="130px">過去30日</td>
+      <th width="130px">過去30日</th>
       <td><%= @month_history.count %></td>
     </tr>
     <tr>
-      <td>全期間</td>
+      <th>全期間</th>
       <td><%= @all_history.count %></td>
     </tr>
   </table>
+
+<h2>継続中のカテゴリ</h2>
+<% Field.where(user_id: @member.id, is_available: 1).each do |fd| %>
+  <p><font style="color: #<%= fd.color_code %>; font-size: 200%;">●</font><%= fd.category2 %></p>
+<% end %>
 </div>
+
 
 <div class="mypage_calender_box">
   <div class="mypage_calender" id="mypage_calender">

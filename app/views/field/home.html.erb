@@ -1,0 +1,43 @@
+<div class="main_area">
+<%= form_with url: users_field_update_path do |fd|  %>
+  <table>
+    <tr>
+      <th>シール</th>
+      <th>大カテゴリー</th>
+      <th>小カテゴリー</th>
+      <th>このシールを使用する</th>
+    </tr>
+    <% @field.each_with_index  do |f1, idx| %>
+      <%= fields_for f1 do |f| %>
+      <%= f.hidden_field :user_id_seq , :index => idx %>
+      <%= f.hidden_field :color_code , :index => idx %>
+        <tr>
+          <td>
+            <font style="color: #<%= f1.color_code %>; font-size:200%">●</font>
+          </td>
+          <td>
+            <%= f.select :category1, Category.all.map{|cat|[
+              cat.category1,
+              cat.category1,
+              {} ]},
+              {:include_blank => "大カテゴリ" },
+              {id: "parent", :index => idx} %>
+          </td>
+          <td>
+            <%= f.text_field :category2, :index => idx %>
+          </td>
+          <td>
+            <div class="stylish_radio">
+              <%= f.radio_button :is_available, "1", :index => idx %>
+              <%= f.label :is_available, "使用する", :value => "1" , :index => idx %>
+              <%= f.radio_button :is_available, "0", :index => idx %>
+              <%= f.label :is_available, "使用しない", :value => "0" , :index => idx %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <%= fd.submit "更新", :class => "body-button" %>
+<% end %>
+</div>

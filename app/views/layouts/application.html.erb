@@ -34,6 +34,7 @@
         <%= link_to 'TOP', root_path, method: :get %> |
         <%= link_to 'マイページ', mypage_path, method: :get %> |
         <%= link_to '登録情報編集', edit_user_registration_path, method: :get %> |
+        <%= link_to 'カテゴリ設定', users_field_path, method: :get %> |
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
         <%= link_to '新規登録', new_user_registration_path, method: :get %> |

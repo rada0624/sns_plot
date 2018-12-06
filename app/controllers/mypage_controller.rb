@@ -107,16 +107,17 @@ class MypageController < ApplicationController
     @create_users_id_seq = 0 # インクリメントされて1になる
     @temp = Studies_history.select("users_id_seq").where(users_id: current_user.id).order("users_id_seq DESC").limit(1) #.order(users_id_seq: :desc)
 
-    @edit_params = params.require(:studies_history).permit(:category1, :category2, :content, :is_open)
+    @edit_params = params.require(:studies_history).permit(:category2, :content, :is_open)
 
     # 大カテゴリ名の取得
-    @temp_category1 = Category.find(@edit_params["category1"].to_i)
+    @temp_category1 = Field.find_by(user_id: current_user.id , category2: @edit_params["category2"])
     @edit_params["category1"] = @temp_category1.category1
+    @edit_params["color_code"] = @temp_category1.color_code
 
     # 小カテゴリ名の取得
-    @temp_category2 = Sub_category.find(@edit_params["category2"].to_i)
-    @edit_params["color_code"] = @temp_category2.color_code
-    @edit_params["category2"] = @temp_category2.category2
+    # @temp_category2 = Sub_category.find(@edit_params["category2"].to_i)
+    # @edit_params["color_code"] = @temp_category2.color_code
+    # @edit_params["category2"] = @temp_category2.category2
 
     # 最新の登録データを取得する
     if !@temp.blank?

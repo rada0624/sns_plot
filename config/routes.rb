@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   post  'mypage/redraw_carender' => 'mypage#redraw_carender'
   post  'mypage/redraw_history' => 'mypage#redraw_history'
   post  'mypage/get_edit_history_data' => 'mypage#get_edit_history_data'
-  # post ''
+  get   'users/field' => 'field#home'
+  post  'users/field/update' => 'field#update' # 自動推測のため不要？
 
   get   '/detail/:id'       , to: 'detail#home'
   get   '/detail/:id/edit'  , to: 'detail#edit'
