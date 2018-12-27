@@ -65,26 +65,42 @@ class MypageController < ApplicationController
       @next_month = @today.month.to_i
     end
 
-    @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
-    .where(users_id: current_user.id)
-    .where('studies_histories.created_at >= ?', Time.local(@next_year, @next_month, 1))
-    .where('studies_histories.created_at <= ?', Time.local(@next_year, @next_month, 1).end_of_month)
+    puts "params"
+    puts params[:member_id]
 
+    if params[:member_id].blank?
+
+      @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
+      .where(users_id: current_user.id)
+      .where('studies_histories.created_at >= ?', Time.local(@next_year, @next_month, 1))
+      .where('studies_histories.created_at <= ?', Time.local(@next_year, @next_month, 1).end_of_month)
+
+    else
+
+      @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")
+      .where(users_id: params[:member_id])
+      .where('studies_histories.created_at >= ?', Time.local(@next_year, @next_month, 1))
+      .where('studies_histories.created_at <= ?', Time.local(@next_year, @next_month, 1).end_of_month)
+
+    end
     params[:year] = @next_year.to_i
     params[:month] = @next_month.to_i
 
   end
 
   def redraw_history
-    @who = params[:who].to_i
+    # @who = params[:who].to_i
 
-    if @who === 1
+    if params[:everyone]
       @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(is_open: 1).where.not(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+      @who = 1
     end
 
-    if @who === 2
+    if params[:myself]
       @everyone_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ").where(users_id: current_user.id).order("studies_histories.created_at DESC").limit(10)
+      @who = 2
     end
+    puts @who
   end
 
   def get_edit_history_data
@@ -94,11 +110,14 @@ class MypageController < ApplicationController
   def update
     # デバッグ用。送信されている値を全て確認する
     # raise.params.inspect
+    @is_cancel = true
     @temp = params["studies_history"]
+    if !params[:cancel]
     @update_history = Studies_history.find(@temp["id"])
-    @update_history.update(:content => @temp["content"], :is_open => @temp["is_open"])
+    @update_history.update(:content => @temp["content"])
     @update_history.save
-
+    @is_cancel = false
+    end
     @return_history = Studies_history.find(@temp["id"])
   end
 

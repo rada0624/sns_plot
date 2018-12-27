@@ -92,3 +92,20 @@ $(function() {
     .css('background-color', after_color);
   })
 });
+
+// 初期表示時
+$(function() {
+
+
+
+  $(document).ready( function() {
+    var checked_val = $('input[name="studies_history[category2]"]:checked').val().toLowerCase();
+    var test = 'input:hidden[name="h_' + checked_val + '"]' ;
+    var after_color = "#" + $(test).val();
+    $('.stylish_category_radio label')
+    .css('background-color', '#bdc3c7');
+
+    $('label.' + checked_val)
+    .css('background-color', after_color);
+  })
+});

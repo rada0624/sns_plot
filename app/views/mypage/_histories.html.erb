@@ -1,27 +1,13 @@
-<h2>
-  <% if who === 1 %>
-  <%= link_to "#{@users.user_name}", mypage_redraw_history_path(who: "2"), :method => 'post', :class => "ajax_on", remote: true %> |
-  最新
+<% if who != 0 %>
+<%= form_with url: mypage_redraw_history_path, :class => "ajax_on", remote: true do |f| %>
+  <div class="flex">
+      <%= f.submit "#{@users.user_name}", name: "myself", :class => "body-button timeline-myself" %>
+      <%= f.submit "最新", name: "everyone", :class => "body-button timeline-everyone", :disabled => "disabled" %>
+  </div>
   <% end %>
-  <% if who === 2 %>
-    <%= @users.user_name %> |
-    <%= link_to "最新", mypage_redraw_history_path(who: "1"), :method => 'post', :class => "ajax_on", remote: true %>
-  <% end %>
-</h2>
+<% end %>
 <hr />
 <div id="history">
-<% local_histories.each do |ev| %>
-    <font color="#<%= ev.color_code %>">●</font>
-    <a href="/detail/<%= ev.id %>">
-      <%= ev.category1 %>：<%= ev.category2 %>
-    </a>
-    ＠
-    <a href="/member/<%= ev.users_id %>">
-      <%= ev.user_name %>（<%= ev.job %>）
-    </a>
-    <%= simple_format(ev.content) %>
-    <span><%= ev.created_at %></span>
-    <hr width= "95%" />
-<% end %>
+  <%= render :partial => "/mypage/histories_inner", :locals => { local_histories: local_histories } %>
 </div>
 <hr />

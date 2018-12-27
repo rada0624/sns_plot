@@ -1,0 +1,13 @@
+<% local_histories.each do |ev| %>
+    <font color="#<%= ev.color_code %>">●</font>
+    <a href="/detail/<%= ev.id %>">
+      <%= ev.category1 %>：<%= ev.category2 %>
+    </a>
+    ＠
+    <a href="/member/<%= ev.users_id %>">
+      <%= ev.user_name %>（<%= ev.job %>）
+    </a>
+    <%= simple_format(ev.content) %>
+    <span><%= ev.created_at %></span>
+    <hr width= "95%" />
+<% end %>

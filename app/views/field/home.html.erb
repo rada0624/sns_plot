@@ -1,43 +1,64 @@
-<div class="main_area">
+<div class="main_area main_area_center">
+<h2>カテゴリ設定</h2>
+
 <%= form_with url: users_field_update_path do |fd|  %>
-  <table>
-    <tr>
-      <th>シール</th>
-      <th>大カテゴリー</th>
-      <th>小カテゴリー</th>
-      <th>このシールを使用する</th>
-    </tr>
+  <div class="set_field_outbox" style="text-align: left;">
+    これから頑張りたいことを決めよう！
+    <br>
+    大カテゴリ：プルダウンの中から選択してください。同じ大カテゴリを複数使用しても大丈夫です。
+    <br>
+    小カテゴリ：自由に入力してください。大カテゴリが「運動」なら、小カテゴリは「ランニング」「筋トレ」など。
+  </div>
+
+    <div class="set_field_outbox"  style="">
+      <div class="seal">
+          シール
+      </div>
+      <div class="category1">
+          大カテゴリ
+      </div>
+      <div class="category2">
+          小カテゴリ
+      </div>
+      <div class="stylish_radio">
+        使用
+      </div>
+    </div>
+
+
     <% @field.each_with_index  do |f1, idx| %>
+    <div class="set_field_outbox">
       <%= fields_for f1 do |f| %>
       <%= f.hidden_field :user_id_seq , :index => idx %>
       <%= f.hidden_field :color_code , :index => idx %>
-        <tr>
-          <td>
+
+      <div class="seal">
             <font style="color: #<%= f1.color_code %>; font-size:200%">●</font>
-          </td>
-          <td>
+      </div>
+
+      <div class="category1">
             <%= f.select :category1, Category.all.map{|cat|[
               cat.category1,
               cat.category1,
               {} ]},
               {:include_blank => "大カテゴリ" },
-              {id: "parent", :index => idx} %>
-          </td>
-          <td>
-            <%= f.text_field :category2, :index => idx %>
-          </td>
-          <td>
+              {id: "parent", :index => idx, :class => "field_form"} %>
+      </div>
+      <div class="category2">
+
+            <%= f.text_field :category2, :index => idx, :class => "field_form" %>
+      </div>
+
             <div class="stylish_radio">
               <%= f.radio_button :is_available, "1", :index => idx %>
               <%= f.label :is_available, "使用する", :value => "1" , :index => idx %>
               <%= f.radio_button :is_available, "0", :index => idx %>
               <%= f.label :is_available, "使用しない", :value => "0" , :index => idx %>
             </div>
-          </td>
-        </tr>
+          </div>
+
       <% end %>
     <% end %>
-  </table>
   <%= fd.submit "更新", :class => "body-button" %>
 <% end %>
 </div>

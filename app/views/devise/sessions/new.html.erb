@@ -1,14 +1,23 @@
-<h2>ログイン</h2>
+<div class="main_area main_area_center">
+  <h2>ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="set_field_outbox">
+    <div class="category1">
+        <%= f.label :メールアドレス %>
+    </div>
+    <div class="category2">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="set_field_outbox">
+    <div class="category1">
+        <%= f.label :パスワード %>
+    </div>
+    <div class="category2">
+        <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -17,10 +26,14 @@
       <%= f.label :ログイン情報をブラウザに保存 %>
     </div>
   <% end -%>
+  <br>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", :class => "body-button" %>
   </div>
 <% end %>
 <hr />
 <%= render "devise/shared/links" %>
+
+
+</div>

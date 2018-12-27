@@ -1,5 +1,7 @@
-<div class="update_form">
-<h2>ユーザー情報</h2>
+<div class="update_form mypage_outbox">
+<h2 class="margin-0">ユーザー情報</h2>
+<hr />
+<div class="mypage_inbox">
   <table>
     <tr>
       <th width="130px">ユーザー名</th>
@@ -28,10 +30,13 @@
 
 <h2>継続中のカテゴリ</h2>
 <% Field.where(user_id: @member.id, is_available: 1).each do |fd| %>
-  <p><font style="color: #<%= fd.color_code %>; font-size: 200%;">●</font><%= fd.category2 %></p>
+<div class="set_field_outbox_mini">
+  <font style="color: #<%= fd.color_code %>; font-size: 200%;">●</font><%= fd.category2 %>
+  </div>
 <% end %>
-</div>
 
+</div>
+</div>
 
 <div class="mypage_calender_box">
   <div class="mypage_calender" id="mypage_calender">
@@ -40,8 +45,8 @@
 </div>
 
 
-<div id="history_box">
-  <h2> <%= @member.user_name %>の実績</h2>
+<div id="history_box" class="mypage_outbox">
+  <h2 class="margin-0"> <%= @member.user_name %>の実績</h2>
   <%= render :partial => "mypage/histories", :locals => { local_histories: @member_hisories, who: 0 } %>
 </div>
 

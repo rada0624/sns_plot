@@ -17,6 +17,14 @@ class DetailController < ApplicationController
     @temp = params["studies_history"]
 
     @create_histries = Studies_history.find(@temp["id"])
+    @category2 = @temp["category2"]
+
+    # 大カテゴリ名の取得
+    @temp_category1 = Field.find_by(user_id: current_user.id , category2: @category2)
+    @temp["category1"] = @temp_category1.category1
+    @temp["color_code"] = @temp_category1.color_code
+
+
     @create_histries.update_attributes(:is_open => @temp["is_open"], :color_code => @temp["color_code"], :category1 => @temp["category1"], :category2 => @temp["category2"], :content => @temp["content"] )
 
 

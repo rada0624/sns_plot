@@ -16,6 +16,7 @@ class MemberController < ApplicationController
     params[:year] = @today.year
     params[:month] = @today.month
     @current_year = @today.year
+    params[:member_id] = @member_id
 
 
     @my_hisories = Studies_history.joins(:users).select("users.*, studies_histories.* ")

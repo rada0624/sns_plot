@@ -1,2 +1,11 @@
-$("#history_box")
- .html("<%= escape_javascript( render :partial => 'histories', :locals => { local_histories: @everyone_hisories, who: @who } )%>");
+$("#history")
+ .html("<%= escape_javascript( render :partial => 'histories_inner', :locals => { local_histories: @everyone_hisories, who: @who } )%>");
+
+if (<%= @who %> == 1) {
+  $(".timeline-myself").removeClass("body-button-disabled");
+  $(".timeline-everyone").addClass("body-button-disabled");
+}
+if (<%= @who %> == 2) {
+  $(".timeline-myself").addClass("body-button-disabled");
+  $(".timeline-everyone").removeClass("body-button-disabled");
+}

@@ -1,3 +1,6 @@
-$("#detail_history_modal_content_" + <%= @return_history.id %>)
+$("#detail_history_modal_content_dummy_" + <%= @return_history.id %>)
   .html("<div class='detail_history_modal_content'><%= escape_javascript(simple_format(@return_history.content))%></div>");
-alert("学習内容を変更しました！");
+
+  if (!<%= @is_cancel %> ) {
+    alert("学習内容を変更しました！");
+  }

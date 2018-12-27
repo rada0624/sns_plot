@@ -1,13 +1,13 @@
 <%= form_for local_make_histories, :url => local_path, class: :ajax_on, remote: true do |f| %>
+<div id="detail_history_modal_content_dummy_<%= local_make_histories.id %>">
   <%= f.hidden_field :id %>
 
   <div class="field">
     <%= f.text_area :content, :class => "edit_area" %>
   </div>
-  <div class="field">
-    <%= f.label :"公開状況" %>
-    <%= f.select :is_open, options_for_select([["公開する", "1"], ["公開しない", "2"]],local_make_histories.is_open) %>
-    <%= f.submit "更新" %>
+  <div class="flex">
+    <%= f.submit "更新", :class => "body-button"%>
+    <%= f.submit "編集をやめる", :name => "cancel", :class => "body-button"%>
   </div>
-
+</div>
 <% end %>

@@ -1,13 +1,13 @@
-<h2 id="calender_head"><%= params[:year] %>年<%= params[:month] %>月の実績</h2>
+<h2 id="calender_head" class="margin-0"><%= params[:year] %>年<%= params[:month] %>月の実績</h2>
 
 <%= form_with url: mypage_redraw_carender_path, :class => "ajax_on", remote: true do |f| %>
-
+  <%=f.hidden_field :member_id  ,:value => params[:member_id]   %>
   <%=f.hidden_field :current_year  ,:value => params[:year]   %>
   <%=f.hidden_field :current_month ,:value => params[:month]  %>
   <hr />
   <div class="flex">
     <%= f.submit "前月", name: "last", :class => "body-button" %>
-    <%= f.submit "今月", name: "now" , :class => "body-button" %>
+    <%= f.submit "今月", name: "now" , :class => "body-button", :disable_with => "更新中..." %>
     <%= f.submit "翌月", name: "next", :class => "body-button" %>
   </div>
 <% end %>

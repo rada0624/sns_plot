@@ -1,3 +1,58 @@
 // Place all the styles related to the field controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+:root {
+  --main-color: #16a085;
+  --sub-color:  #16a085;
+  --sub-color-2: #d8fff7;
+  --bg-color: #f9fff4;
+
+}
+
+.field_form {
+    height: 30px;
+}
+
+.main_area_center {
+  text-align: center;
+}
+
+.set_field_outbox {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin: 10px auto;
+  width: 850px;
+}
+
+.set_field_outbox_mini {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin: 10px auto;
+  width: 100%;
+}
+
+.set_field_outbox div {
+  padding: 5px;
+}
+
+.set_field_outbox .seal {
+  width: 70px;
+}
+
+.set_field_outbox .category1 {
+  width: 200px;
+  text-align: left;
+}
+
+.set_field_outbox .category2  {
+  width: 300px;
+  text-align: left;
+}
+
+.set_field_outbox .category1 .field_form, .set_field_outbox .category2 .field_form  {
+  width: 100%;
+}
